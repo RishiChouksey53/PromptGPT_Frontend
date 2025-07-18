@@ -129,4 +129,7 @@
   .navSideBar {
     display: block;
   }
+  .chatWindow {
+    height: 100dvh;
+  }
 }

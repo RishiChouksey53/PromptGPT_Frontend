@@ -108,9 +108,13 @@
   .sidebar {
     position: absolute;
     left: -320px;
+    top: 0;
     z-index: 5;
   }
   .logoBtnAndX i {
     display: block;
+  }
+  .sidebar {
+    height: 100dvh;
   }
 }

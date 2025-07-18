@@ -95,7 +95,7 @@ export default function Sidebar() {
               setIsSideBarOpen(false);
             }}
           >
-            <img src="src/assets/logo.png" alt="gpt logo" />
+            <img src="/logo.png" alt="gpt logo" />
           </div>
           <i
             className="fa-solid fa-xmark"
