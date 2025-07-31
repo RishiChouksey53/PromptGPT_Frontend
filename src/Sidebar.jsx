@@ -75,6 +75,9 @@ export default function Sidebar() {
         params: {
           threadId: threadId,
         },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
       });
       getAllThreads();
     } catch (err) {

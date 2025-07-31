@@ -19,12 +19,13 @@ export default function Auth() {
 
   const { setUserProfile, setIsAuthenticated } = useContext(MyContext);
 
-  function reset() {
-    setEmail("");
-    setName("");
-    setPassword("");
-    setUsername("");
-  }
+  // function reset() {
+  //   setEmail("");
+  //   setName("");
+  //   setPassword("");
+  //   setUsername("");
+  // }
+
   const handleLogin = async () => {
     try {
       setIsLoading(true);
@@ -48,7 +49,7 @@ export default function Auth() {
       console.error(err);
     } finally {
       setIsLoading(false);
-      reset();
+      // reset();
       setTimeout(() => {
         setMessage("");
         setIsError(false);
@@ -81,7 +82,7 @@ export default function Auth() {
       console.error(err);
     } finally {
       setIsLoading(false);
-      reset();
+      // reset();
       setTimeout(() => {
         setMessage("");
         setIsError(false);
