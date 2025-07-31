@@ -178,13 +178,13 @@ export default function Auth() {
           </Button>
         </div>
       </div>
-      {/* {!isLoading && (
+      {isLoading && (
         <div>
           <div className="loadingDiv">
             <ScaleLoader color="#fff"></ScaleLoader>
           </div>
         </div>
-      )} */}
+      )}
     </div>
   );
 }
