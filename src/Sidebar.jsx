@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Sidebar.css";
 import { MyContext } from "./MyContext";
 import axios from "axios";
@@ -6,6 +6,7 @@ import { clientServer } from "./config";
 import { v1 as uuidv1 } from "uuid";
 
 export default function Sidebar() {
+  const [updatedThread, setUpdatedThread] = useState([]);
   const {
     allThreads,
     setAllThreads,
@@ -79,7 +80,10 @@ export default function Sidebar() {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      getAllThreads();
+      const updatedThread = allThreads.filter(
+        (thread) => thread.id != threadId
+      );
+      setAllThreads(updatedThread);
     } catch (err) {
       console.log(err);
     }
