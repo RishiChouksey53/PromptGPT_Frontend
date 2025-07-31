@@ -9,25 +9,34 @@ import { clientServer } from "./config/index.jsx";
 
 export default function ChatWindow() {
   const {
+    userProfile,
     prompt,
     setPrompt,
     reply,
     setReply,
     currThread,
-    prevChats,
     setPrevChats,
     isSideBarOpen,
     setIsSideBarOpen,
+    setIsAuthenticated,
   } = useContext(MyContext);
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(0);
   const getReply = async () => {
     try {
       setLoading(true);
-      const response = await clientServer.post("/api/chat", {
-        message: prompt,
-        threadId: currThread,
-      });
+      const response = await clientServer.post(
+        "/api/chat",
+        {
+          message: prompt,
+          threadId: currThread,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
       setReply(response.data.reply);
     } catch (err) {
       console.log(err);
@@ -36,7 +45,7 @@ export default function ChatWindow() {
     }
   };
 
-  //Append new chat to revChats
+  //Append new chat to prevChats
   useEffect(() => {
     if (prompt && reply) {
       setPrevChats((prevChats) => [
@@ -84,7 +93,7 @@ export default function ChatWindow() {
                 style={{ color: "grey" }}
                 className="fa-solid fa-circle-user"
               ></i>
-              Gmail
+              {userProfile.email}
             </li>
             <li>
               <i className="fa-solid fa-arrow-up-from-bracket"></i>Upgrade plan
@@ -95,7 +104,12 @@ export default function ChatWindow() {
             <li>
               <i className="fa-brands fa-hire-a-helper"></i> Help
             </li>
-            <li>
+            <li
+              onClick={() => {
+                localStorage.removeItem("token");
+                setIsAuthenticated(false);
+              }}
+            >
               <i className="fa-solid fa-right-from-bracket"></i>Log out
             </li>
           </ul>

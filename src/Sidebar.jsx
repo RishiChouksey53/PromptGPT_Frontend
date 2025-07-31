@@ -22,7 +22,11 @@ export default function Sidebar() {
   } = useContext(MyContext);
   const getAllThreads = async () => {
     try {
-      const response = await clientServer.get("/api/get_all_thread");
+      const response = await clientServer.get("/api/get_all_thread", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
       const filterdData = response.data.threads.map((thread) => ({
         threadId: thread.threadId,
         title:

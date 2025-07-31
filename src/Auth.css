@@ -1,0 +1,105 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  background-color: #1e1e1e;
+  color: white;
+  gap: 1rem;
+}
+
+/* Container holding the form and panel */
+.container {
+  margin-inline: 1rem;
+  display: flex;
+  flex-direction: row;
+  max-width: 600px;
+  background-color: #2c2c2e;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.left {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem;
+  background-color: #2c2c2e;
+}
+
+.right {
+  flex: 1;
+  background-color: #10a37f;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.eye {
+  margin-inline-start: auto;
+}
+
+.MuiInputBase-input {
+  color: #ffffff !important;
+}
+
+.MuiInputBase-root {
+  color: white;
+  background-color: #3a3a3c;
+  border-radius: 4px;
+}
+
+.MuiOutlinedInput-notchedOutline {
+  border-color: #444 !important;
+}
+
+.MuiInputLabel-root {
+  color: #a0a0a0 !important;
+}
+
+.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #10a37f !important;
+}
+
+.Mui-focused .MuiInputLabel-root {
+  color: #10a37f !important;
+}
+
+.MuiButton-contained {
+  background-color: #10a37f !important;
+  color: white;
+  font-weight: 500;
+  text-transform: none;
+  transition: 0.3s ease;
+}
+
+.MuiButton-contained:hover {
+  background-color: #12856e !important;
+}
+
+.loadingDiv{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5)
+}
+
+@media (max-width: 600px) {
+  .container{
+    flex-direction: column;
+  }
+}
