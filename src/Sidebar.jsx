@@ -81,7 +81,7 @@ export default function Sidebar() {
         },
       });
       const updatedThread = allThreads.filter(
-        (thread) => thread.id != threadId
+        (thread) => thread._id != threadId
       );
       setAllThreads(updatedThread);
     } catch (err) {
