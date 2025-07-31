@@ -102,4 +102,7 @@
   .container{
     flex-direction: column;
   }
+  .mainContainer{
+    height: 100dvh;
+  }
 }
