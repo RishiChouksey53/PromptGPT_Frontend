@@ -86,7 +86,7 @@
   background-color: #12856e !important;
 }
 
-.loadingDiv{
+.loadingDiv {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -95,14 +95,51 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5)
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 @media (max-width: 600px) {
-  .container{
+  .container {
     flex-direction: column;
   }
-  .mainContainer{
+  .mainContainer {
     height: 100dvh;
   }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px #3a3a3c inset !important; /* Match your input background */
+  -webkit-text-fill-color: #fff !important;
+  caret-color: #fff !important;
+  border-radius: 4px;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+.forgot {
+  color: #10a37f;
+  text-align: right;
+  cursor: pointer;
+  font-size: 0.875rem;
+  margin-top: -0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.signup-btn {
+  background-color: #ffffff !important;
+  color: #10a37f !important;
+  font-weight: 600;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  padding: 6px 20px;
+  text-transform: none;
+}
+
+.signup-btn:hover {
+  background-color: #f0f0f0 !important;
+  color: #0e8e6e !important;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
 }

@@ -6,7 +6,6 @@ import { clientServer } from "./config";
 import { v1 as uuidv1 } from "uuid";
 
 export default function Sidebar() {
-  const [updatedThread, setUpdatedThread] = useState([]);
   const {
     allThreads,
     setAllThreads,

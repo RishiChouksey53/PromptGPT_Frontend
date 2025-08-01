@@ -8,6 +8,10 @@ import { useState } from "react";
 import { clientServer } from "./config/index.jsx";
 
 export default function ChatWindow() {
+  const textAreaRef = useRef(null);
+  useEffect(() => {
+    textAreaRef.current.focus();
+  });
   const {
     userProfile,
     prompt,
@@ -21,7 +25,7 @@ export default function ChatWindow() {
     setIsAuthenticated,
   } = useContext(MyContext);
   const [loading, setLoading] = useState(false);
-  const [isOpen, setIsOpen] = useState(0);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
   const getReply = async () => {
     try {
       setLoading(true);
@@ -63,14 +67,23 @@ export default function ChatWindow() {
     setPrompt("");
   }, [reply]);
 
+  function closeSideBar() {
+    if (isSideBarOpen) {
+      setIsSideBarOpen(false);
+    }
+    if (isProfileOpen) {
+      setIsProfileOpen(false);
+    }
+  }
+
   return (
-    <div className="chatWindow">
+    <div className="chatWindow" onClick={closeSideBar}>
       <div className="navbar">
         <div className="navLogo">PromptGPT</div>
         <div
           className="navSideBar"
           onClick={() => {
-            isSideBarOpen ? setIsSideBarOpen(false) : setIsSideBarOpen(true);
+            setIsSideBarOpen(!isSideBarOpen);
           }}
         >
           <i className="fa-solid fa-bars"></i>
@@ -78,14 +91,17 @@ export default function ChatWindow() {
         <div
           className="navProfile"
           onClick={() => {
-            isOpen == 0 ? setIsOpen(1) : setIsOpen(0);
+            setIsProfileOpen(!isProfileOpen);
           }}
         >
           <img src="/profile.png" alt="profile" />
         </div>
         <div
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
           className="navProfileOptions"
-          style={isOpen == 0 ? { display: "none" } : {}}
+          style={isProfileOpen == 0 ? { display: "none" } : {}}
         >
           <ul>
             <li style={{ color: "grey" }}>
@@ -121,6 +137,7 @@ export default function ChatWindow() {
         <div className="chatInput">
           <div className="userInput">
             <textarea
+              ref={textAreaRef}
               onChange={(e) => {
                 setPrompt(e.target.value);
               }}

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import SideBar from "./Sidebar.jsx";
 import ChatWindow from "./ChatWindow.jsx";
 import { MyContext } from "./MyContext.jsx";
@@ -7,6 +7,13 @@ import { useState } from "react";
 import { v1 as uuidv1 } from "uuid";
 import Auth from "./Auth.jsx";
 import { clientServer } from "./config/index.jsx";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useNavigate,
+  Navigate,
+} from "react-router-dom";
 
 export default function App() {
   const [prompt, setPrompt] = useState("");
@@ -70,14 +77,24 @@ export default function App() {
   return (
     <div className="main">
       <MyContext.Provider value={providerValues}>
-        {isAuthenticated ? (
-          <>
-            <SideBar />
-            <ChatWindow />
-          </>
-        ) : (
-          <Auth />
-        )}
+        <BrowserRouter>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                isAuthenticated ? (
+                  <>
+                    <SideBar />
+                    <ChatWindow />
+                  </>
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
+            />
+            <Route path="/login" element={<Auth />} />
+          </Routes>
+        </BrowserRouter>
       </MyContext.Provider>
     </div>
   );

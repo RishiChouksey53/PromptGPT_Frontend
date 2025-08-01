@@ -5,6 +5,8 @@ import Button from "@mui/material/Button";
 import { clientServer } from "./config";
 import { ScaleLoader } from "react-spinners";
 import { MyContext } from "./MyContext";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { InputAdornment, IconButton } from "@mui/material";
 
 export default function Auth() {
   const [isLogin, setIsLogin] = useState(true);
@@ -137,21 +139,29 @@ export default function Auth() {
                 isLogin ? handleLogin() : handleRegister();
               }
             }}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    onClick={() => setPasswordVisibility(!passVisibility)}
+                    edge="end"
+                  >
+                    {passVisibility ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
           />
-          {!passVisibility ? (
-            <i
+          {isLogin && (
+            <p
+              className="forgot"
               onClick={() => {
-                setPasswordVisibility(!passVisibility);
+                // add your forgot password handler here
+                alert("Redirect to forgot password page or open modal");
               }}
-              className="fa-solid fa-eye eye"
-            ></i>
-          ) : (
-            <i
-              onClick={() => {
-                setPasswordVisibility(!passVisibility);
-              }}
-              className="fa-solid fa-eye-slash eye"
-            ></i>
+            >
+              Forgot Password?
+            </p>
           )}
           <Button
             onClick={isLogin ? handleLogin : handleRegister}
@@ -167,6 +177,7 @@ export default function Auth() {
             <h3>Already have an account</h3>
           )}
           <Button
+            className="signup-btn"
             onClick={() => {
               setIsError(false);
               setMessage(false);
