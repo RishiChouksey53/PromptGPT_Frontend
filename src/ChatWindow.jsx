@@ -8,10 +8,6 @@ import { useState } from "react";
 import { clientServer } from "./config/index.jsx";
 
 export default function ChatWindow() {
-  const textAreaRef = useRef(null);
-  useEffect(() => {
-    textAreaRef.current.focus();
-  });
   const {
     userProfile,
     prompt,
@@ -26,6 +22,12 @@ export default function ChatWindow() {
   } = useContext(MyContext);
   const [loading, setLoading] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const textAreaRef = useRef(null);
+  useEffect(() => {
+    if (textAreaRef.current) {
+      textAreaRef?.current?.focus();
+    }
+  }, [isSideBarOpen]);
   const getReply = async () => {
     try {
       setLoading(true);
